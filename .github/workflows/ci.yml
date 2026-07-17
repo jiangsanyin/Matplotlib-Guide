@@ -2,17 +2,21 @@ name: Build and Deploy Docs
 on:
   push:
     branches: [main, master]
-    paths:
-      - 'source/**'          # 只有 md 文件变动才触发
-      - 'mkdocs.yml'
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: pip install mkdocs mkdocs-material
+      - run: git config user.name ci-bot
+      - run: git config user.email ci-bot@users.noreply.github.com
       - run: mkdocs gh-deploy --force
