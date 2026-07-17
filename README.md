@@ -4,7 +4,7 @@
 
 > 本教程是笔者在学习与使用 Matplotlib 过程中整理的笔记，涵盖从安装入门到常用图表绘制的完整内容，使用 MkDocs + Material 主题构建为交互式文档网站。
 
-📖 **在线阅读**：`https://你的用户名.github.io/Matplotlib-Guide/`
+📖 **在线阅读**：`https://jiangsanyin.github.io/Matplotlib-Guide/`
 
 ---
 
@@ -34,7 +34,7 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/你的用户名/Matplotlib-Guide.git
+git clone https://github.com/jiangsanyin/Matplotlib-Guide.git
 cd Matplotlib-Guide
 ```
 
