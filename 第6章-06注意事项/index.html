@@ -1,0 +1,1062 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Matplotlib 数据可视化基础教程">
+      
+      
+        <meta name="author" content="jiangsanyin">
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/%E7%AC%AC6%E7%AB%A0-06%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+      
+      
+        <link rel="prev" href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>python绘图库-matplotlib-chp6 - Python绘图库 - Matplotlib学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Python绘图库 - Matplotlib学习笔记" class="md-header__button md-logo" aria-label="Python绘图库 - Matplotlib学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python绘图库 - Matplotlib学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              python绘图库-matplotlib-chp6
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC1%E7%AB%A0-01%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E8%AF%86Matplotlib/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第1章 安装与初识Matplotlib
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第2章 官方文档的介绍
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第3章 Matplotlib中图的组成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第4章 Matplotlib中对图的操作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第5章 Matplotlib绘制常用图表
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第6章 注意事项
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python绘图库 - Matplotlib学习笔记" class="md-nav__button md-logo" aria-label="Python绘图库 - Matplotlib学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python绘图库 - Matplotlib学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC1%E7%AB%A0-01%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E8%AF%86Matplotlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章 安装与初识Matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第2章 官方文档的介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章 Matplotlib中图的组成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章 Matplotlib中对图的操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第5章 Matplotlib绘制常用图表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章 注意事项
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章 注意事项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 支持中文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-pltshow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 plt.show()注意事项
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 plt.show()注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.1 是带有“释放清理”性质的终结函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.2 是阻塞式（Blocking）函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-ide-vs-jupyter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.3 在不同运行环境（IDE vs Jupyter）下的表现不同
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.4 尽量不要“多次调用”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 支持中文
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-pltshow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 plt.show()注意事项
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 plt.show()注意事项">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.1 是带有“释放清理”性质的终结函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.2 是阻塞式（Blocking）函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-ide-vs-jupyter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.3 在不同运行环境（IDE vs Jupyter）下的表现不同
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2.4 尽量不要“多次调用”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">六、 注意事项<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="61">6.1 支持中文<a class="headerlink" href="#61" title="Permanent link">&para;</a></h2>
+<p>Matplotlib 任何文本的最终渲染字体，是由plt.rcParams['font.family']（字体大类/族）和对应的备选列表（如 plt.rcParams['font.sans-serif']）共同决定的。</p>
+<p>Matplotlib 默认的字体大类保存在plt.rcParams['font.family']中，它的默认值是：['sans-serif']，表示所有图表文本都使用 无衬线字体（sans-serif） 大类。</p>
+<p>在字体大类下面还有具体的字体，这些才是决定图表中各个文字所使用的字体。这个配置保存在plt.rcParams['font.sans-serif']，它是一个列表，表示具体的字体备选推荐列表。它的默认值跟字体大类有关，字体大类是默认值['sans-serif']时，具体的字体备选推荐列表的值是：['DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', 'sans-serif']。</p>
+<p>具体的字体备选推荐列表的值，其实代表一份从左到右的“待选名单”。当要在图表里写字时，matplotlib会先在操作系统里找 <code>DejaVu Sans</code>，如果找到了就用它画；如果系统里没有（比如 Windows 默认通常没有），它就会被pass，接着找第二个 <code>Bitstream Vera Sans</code>……以此类推，直到找到电脑里真正安装了的字体为止。
+但是这份默认的“待选名单”中全部是西文字体，不支持中文。要支持中文就要使用：['SimHei']，字体大类仍使用默认的 ['sans-serif'] 即可。</p>
+<p>具体的设置代码如下：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">### 方式1（推荐）</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 设置具体字体为黑体</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>
+<span class="c1"># 解决负号 &#39;-&#39; 显示为方块的问题</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+
+<span class="c1">### 方式2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 设置具体字体为黑体</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>
+<span class="c1"># 解决负号 &#39;-&#39; 显示为方块的问题</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+这两种写法在<strong>实际运行效果上是完全等价的</strong>，都能完美解决中文乱码和负号变成方块的问题。
+它们唯一的区别在于“调用的入口路径（API 层级）”不同。用一句话总结就是：<code>plt.rcParams</code> 只是 <code>mpl.rcParams</code> 的一个快捷方式（指针）。</p>
+<p><strong>推荐使用方式1中的用法</strong>，理由如下：
+- 保持代码简洁，避免冗余导入：
+    - 日常作图时，绝大多数操作都是通过 <code>import matplotlib.pyplot as plt</code> 来完成，极少直接用到顶层的 <code>matplotlib</code> 核心库。
+    - 用第二种写法的话，用户必须被迫多写一行 <code>import matplotlib as mpl</code>。这在代码上属于引入了不必要的模块。
+- 符合业界主流审美：
+    - 翻阅 GitHub 上的主流开源 AI 项目、Kaggle 顶尖 Notebook 或者是 Datawhale 等开源社区的教程脚本，大家几乎约定俗成地在使用 <code>plt.rcParams</code>。遵循这个习惯能让自己编写脚本在团队协作或沟通时读起来步伐更协调、更具“极客范”。</p>
+<h2 id="62-pltshow">6.2 plt.show()注意事项<a class="headerlink" href="#62-pltshow" title="Permanent link">&para;</a></h2>
+<h3 id="621">6.2.1 是带有“释放清理”性质的终结函数<a class="headerlink" href="#621" title="Permanent link">&para;</a></h3>
+<p><code>plt.show()</code> 并不是单纯的“把图画出来展示给用户”，它在将图形渲染到屏幕后，会在内存中把当前整个画布（Figure）对象彻底销毁并清空。</p>
+<p>比如用户在执行了 <code>plt.show()</code> 之后，还想继续调用 <code>plt.savefig('my_plot.png')</code> 来保存图片，将会得到一张完全空白的图片。又比如用户在执行了 <code>plt.show()</code> 之后，还想修改其中子图中的相关内容比如修改子图标题，此时再去调用 <code>ax.grid()</code>、<code>plt.show();</code>，并不会看到期望的效果，如下代码：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># 设置具体字体为黑体</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>
+
+<span class="c1"># 解决负号 &#39;-&#39; 显示为方块的问题</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># 1. 此时默认是没有网格的</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span><span class="c1"># 触发“切换”：从无到有，网格显示了！</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;交互模式：网格已自动开启！&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+
+<span class="c1"># 2. 紧接着再调用一次，没有传任何其他参数</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span><span class="c1"># 再次触发“切换”：从有到无，网格又消失了！</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;交互模式：网格已自动关闭！&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div>
+这段代码虽然不会报错，但其并不会展示用户期望的效果。用户并不能看到弹出窗口中子图网格消失、标题变化，相反从第2个<code>ax.grid()</code>语句之后的代码不能展示其期望的效果。</p>
+<p>真正的流程大致如下：
+- 执行了第一个<code>plt.show()</code>语句前，matplotlib系统一直在操作内存中的相关python对象，一直在积蓄实力。</p>
+<ul>
+<li>
+<p>执行了第一个<code>plt.show()</code>语句后，程序会弹出一个窗口显示画布上内容。</p>
+</li>
+<li>
+<p>在用户关闭窗口的那一瞬间，matplotlib系统会认为“这张图的使命已经完成”。为了释放内存，它会在后台把这张画布等内容从当前的活跃管理队列中彻底注销并清空。虽然 <code>fig</code> 和 <code>ax</code> 这两个变量在 Python 内存中依然保留着残余的地址（因此后续代码不会触发 <code>NameError</code> 或 <code>AttributeError</code>），但它们已经变成了与物理渲染引擎彻底断开连接的“僵尸对象”。</p>
+</li>
+<li>
+<p>后续用户尝试继续对画布及其中内容进行操作此时，都只是在对一个个单独存在、未与matplotlib后端引擎建立联系的python对象进行操作，matplotlib后端引擎不会收到这些新指令，后续再怎么调用 <code>plt.show()</code> 也绝对无法弹窗或刷新任何内容。</p>
+</li>
+</ul>
+<h3 id="622-blocking">6.2.2 是阻塞式（Blocking）函数<a class="headerlink" href="#622-blocking" title="Permanent link">&para;</a></h3>
+<p>在标准的 Python 脚本（如 <code>.py</code> 文件）中运行到 <code>plt.show()</code> 时，程序会立刻卡住（阻塞）。只有当用户用鼠标手动关闭弹出的那个 GUI 绘图视窗后，后续的代码才会继续向下执行。</p>
+<p>如果在跑一个需要连续训练并画图的自动化循环（比如每 10 个 Epoch 画一次 Loss），直接写 <code>plt.show()</code> 会让训练在第一个 10 轮就死死卡住，直到手动去点那个关闭按钮。</p>
+<p>在需要非阻塞的自动化脚本中，通常会使用 <code>plt.ion()</code>（Interaction On：开启交互模式）配合 <code>plt.pause(1)</code>，让它显示当前的绘图效果后继续往后执行代码与刷新画布。。</p>
+<p>示例代码：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 0: 修改全局设置 (rcParams Settings)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># 设置具体字体为黑体</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>
+<span class="c1"># 解决负号 &#39;-&#39; 显示为方块的问题</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span> <span class="c1"># Interaction On。开启交互模式，图表会实时更新，不需要阻塞等待</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;tab:blue&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 开启网格线</span>
+<span class="c1"># 关键函数，暂停 3 秒并强制刷新图表窗口。在交互模式下，只有调用 pause/show 才会真正渲染画面</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;网格开启中 (3秒)...&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># </span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># 关闭网格线</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;网格已关闭！&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span> <span class="c1"># Interaction Off。关闭交互模式</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span> <span class="c1"># 显示最新图表</span>
+</code></pre></div></td></tr></table></div>
+此代码可实现如下功能：在不关闭、不销毁绘图窗口的前提下，实现图表状态的动态闪变切换。
+具体视觉流程如下：
+- <strong>前3秒</strong>：窗口自动弹出，展示一条蓝色折线，此时网格开启，标题显示“网格开启中 (3秒)...”。</p>
+<ul>
+<li>
+<p><strong>第3秒时</strong>：窗口不关闭，画面在直接发生突变——网格消失，标题闪变成“网格已关闭！”。</p>
+</li>
+<li>
+<p><strong>3秒之后</strong>：图表定格在“无网格”的最新状态并进入阻塞挂起，等待用户手动点击右上角关闭窗口。</p>
+</li>
+</ul>
+<h3 id="623-ide-vs-jupyter">6.2.3 在不同运行环境（IDE vs Jupyter）下的表现不同<a class="headerlink" href="#623-ide-vs-jupyter" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>在标准 <code>.py</code> 脚本或终端里：</p>
+<ul>
+<li>必须显式调用：如果不写 <code>plt.show()</code>，程序运行完后桌面上什么都不会发生，画布在后台默默地被创建与销毁。</li>
+</ul>
+</li>
+<li>
+<p>在 Jupyter Notebook / JupyterLab 中（开启了 <code>%matplotlib inline</code> 后）：</p>
+<ul>
+<li>
+<p>自动拦截并提前渲染：这是一个非常特殊的“魔术机制”。一旦代码块（Cell）执行完毕，Jupyter 的后台钩子会自动抓取当前的 Figure 对象，就算没写 <code>plt.show()</code>，它也会强行在单元格下方把图显示出来。</p>
+</li>
+<li>
+<p>此时 <code>plt.show()</code> 的作用：在 Jupyter 里写它，更多地是告诉matplotlib后端引擎“代码要执行结束了、显示出最后的绘图效果并释放相关资源”，起到释放清理的作用。 Jupyter 在执行完 <code>plt.show()</code> 后就立即在此 cell 后面显示绘图效果，如果之后还有代码，还会继续执行，但因为 <code>plt.show()</code> 是带有“释放清理”性质的终结函数，所以后续的操作看不到效果。</p>
+</li>
+</ul>
+<h3 id="624">6.2.4 尽量不要“多次调用”<a class="headerlink" href="#624" title="Permanent link">&para;</a></h3>
+</li>
+</ul>
+<p>在同一个 <code>.py</code> 脚本或 jupyter notebook 文件中，尽量<strong>只在代码的最末尾调用一次 <code>plt.show()</code></strong>。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

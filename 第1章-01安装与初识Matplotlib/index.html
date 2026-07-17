@@ -1,0 +1,1427 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Matplotlib 数据可视化基础教程">
+      
+      
+        <meta name="author" content="jiangsanyin">
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/%E7%AC%AC1%E7%AB%A0-01%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E8%AF%86Matplotlib/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>python绘图库-matplotlib-chp1 - Python绘图库 - Matplotlib学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matplotlib" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Python绘图库 - Matplotlib学习笔记" class="md-header__button md-logo" aria-label="Python绘图库 - Matplotlib学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python绘图库 - Matplotlib学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              python绘图库-matplotlib-chp1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第1章 安装与初识Matplotlib
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第2章 官方文档的介绍
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第3章 Matplotlib中图的组成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第4章 Matplotlib中对图的操作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第5章 Matplotlib绘制常用图表
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC6%E7%AB%A0-06%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第6章 注意事项
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python绘图库 - Matplotlib学习笔记" class="md-nav__button md-logo" aria-label="Python绘图库 - Matplotlib学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python绘图库 - Matplotlib学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章 安装与初识Matplotlib
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章 安装与初识Matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 安装matplotlib
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 感受matplotlib
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 matplotlib中图表的组成部分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 matplotlib中图表的组成部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.1 总体概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2 主要元素介绍
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2 主要元素介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2.1. 容器与框架层（基础舞台）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2.2. 数据表现层（图表核心）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2.3. 辅助说明层（图例与轴线）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 编码风格
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 编码风格">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.1 风格说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-the-oo-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.2 the OO-style示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-the-pyplot-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.3 the pyplot-style示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 绘图模板
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第2章 官方文档的介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章 Matplotlib中图的组成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章 Matplotlib中对图的操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第5章 Matplotlib绘制常用图表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC6%E7%AB%A0-06%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章 注意事项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 安装matplotlib
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 感受matplotlib
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 matplotlib中图表的组成部分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 matplotlib中图表的组成部分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.1 总体概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2 主要元素介绍
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2 主要元素介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2.1. 容器与框架层（基础舞台）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2.2. 数据表现层（图表核心）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3.2.3. 辅助说明层（图例与轴线）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 编码风格
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 编码风格">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.1 风格说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-the-oo-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.2 the OO-style示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143-the-pyplot-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4.3 the pyplot-style示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 绘图模板
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p>笔者学习与使用matplotlib过程中做了相关笔记，然后将其整理成了此文档。</p>
+<h1 id="matplotlib">一、安装与初识matplotlib<a class="headerlink" href="#matplotlib" title="Permanent link">&para;</a></h1>
+<p>Matplotlib 是 Python 中最核心、最老牌的数据可视化（绘图）基础库。它就像是 Python 世界里的“数字画笔”，能够将 NumPy 数组或 Pandas 抽象的数据，转化为折线图、柱状图、散点图、3D 图等各种专业的静态、动态或交互式图表。它的设计理念深受 MATLAB 的影响（其核心子库 <code>pyplot</code> 的语法与 MATLAB 高度相似），由于其功能极其强大、底层控制极其精细，如今它已成为大模型特征分析、医疗数据工程以及科学计算领域中不可或缺的画图利器。</p>
+<p>虽然 Matplotlib 的名字和日常使用中大多数的场景都集中在平面二维（2D）图表上，但它其实也具备绘制三维（3D）图形的能力。Matplotlib 内置了一个叫做 mplot3d 的工具包，不需要额外安装任何第三方库，就能直接绘制出各种 3D 图表。</p>
+<hr />
+<p>在Jupyter中可以直接显示使用Matplotlib绘制的图形，方便学习与查看效果。</p>
+<p>Matplotlib相关链接：</p>
+<ul>
+<li>官网：<code>https://matplotlib.org/index.html</code></li>
+<li>案例：<code>https://matplotlib.org/gallery/index.html</code></li>
+<li>官方所有示例源码：<code>https://matplotlib.org/stable/tutorials/index.html</code></li>
+<li>项目的github仓库地址：<code>https://github.com/matplotlib/matplotlib</code></li>
+</ul>
+<h2 id="11-matplotlib">1.1 安装matplotlib<a class="headerlink" href="#11-matplotlib" title="Permanent link">&para;</a></h2>
+<p>本文以 <code>python 3.11.9</code>、`matplotlib 3.11.0 为环境来描述。以下内容中涉及所述的stable版本matplotlib就是指2026年6月11日发布的matplotlib v3.11，它为当前最新稳定版。
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code># 以在conda 中安装的Python 3.11.9环境为例
+C<span class="p">:</span><span class="nl">\Users</span><span class="c1">&gt;conda activate agent_py3119</span>
+<span class="p">(</span>agent_py3119<span class="p">)</span> C:\Users<span class="p">&gt;</span>python -V
+Python 3.11.9
+<span class="p">(</span>agent_py3119<span class="p">)</span> C:\Users<span class="p">&gt;</span>pip install matplotlib==3.11.0
+# 此时安装了matplotlib 3.11.0
+<span class="p">(</span>agent_py3119<span class="p">)</span> C:\Users<span class="p">&gt;</span>pip list <span class="p">|</span> findstr matplotlib
+matplotlib                               3.11.0
+matplotlib-inline                        0.1.7
+</code></pre></div></td></tr></table></div></p>
+<h2 id="12-matplotlib">1.2 感受matplotlib<a class="headerlink" href="#12-matplotlib" title="Permanent link">&para;</a></h2>
+<p>使用matplotlib绘制第一张图：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 导入matplotlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1"># 导入numpy库并取别名np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># 创建图表</span>
+<span class="c1"># 此方法依赖pyplot自动创建figure和axes</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">意思： 在内存中暗中画好一张折线图。</span>
+<span class="sd">拆解其中 np.arange(5)： 生成一个包含 5 个数字的序列，即 [0, 1, 2, 3, 4]。</span>
+<span class="sd">拆解其中 ax.plot(X, Y)： 它的标准语法是传入 X 轴数据和 Y 轴数据。</span>
+
+<span class="sd">这里传入了两个一模一样的序列，等同于：ax.plot([0,1,2,3,4], [0,1,2,3,4])。</span>
+<span class="sd">Matplotlib 在后台把这 5 个坐标点 (0,0), (1,1), (2,2), (3,3), (4,4) 连接起来，形成一条斜线（其实是一条从左下角到右上角的 45 度的线段）。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># 显示</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">意思： 把画好的图真正展示出来。</span>
+<span class="sd">为什么需要此行代码： 前面的 plt.plot() 只是在电脑内存里悄悄把图画好了，并没有展示出来。此语句就是在一个画布上真正展示出绘制好的图</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<img alt="Pasted image 20260611193021" src="https://files.seeusercontent.com/2026/06/11/ttK3/Pasted-image-20260611193021.png" /></p>
+<h2 id="13-matplotlib">1.3 matplotlib中图表的组成部分<a class="headerlink" href="#13-matplotlib" title="Permanent link">&para;</a></h2>
+<p><img alt="20260613171512030.png" src="https://files.seeusercontent.com/2026/06/13/vNb2/20260613171512030.png" />
+此图来自 Matplotlib 官网，它清晰地展现了一个完整 Matplotlib 图表背后的所有组成构件和对应的代码 API。以下是对此图的介绍。</p>
+<h3 id="131">1.3.1 总体概述<a class="headerlink" href="#131" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>核心内容</strong>：此图全面展示了 Matplotlib <strong>面向对象（Object-Oriented）</strong> 绘图的核心层级结构（个人感觉有点类似于HTML语言中各种容器元素的嵌套结构及对它们的操作），并标注了控制每个视觉元素的关键代码方法（如 <code>ax.set_title</code>、<code>ax.plot</code> 等）。</p>
+</li>
+<li>
+<p><strong>绘制步骤与核心逻辑</strong>：</p>
+<ol>
+<li><strong>准备画布 (<code>Figure</code>)</strong>：最外层首先创建一个最大的空白画布。</li>
+<li><strong>创建坐标系 (<code>Axes</code>)</strong>：在画布上划分出一个或多个独立的绘图区域（即子图）。</li>
+<li><strong>绘制核心数据 (<code>Line</code> / <code>Markers</code>)</strong>：在坐标系中通过数据点绘制出折线、散点等主体图形。</li>
+<li><strong>添加辅助修饰 (<code>Title</code> / <code>Legend</code> / <code>Grid</code> / <code>Axis</code>)</strong>：最后加上标题、图例、网格和坐标轴标签，完成一幅逻辑严密、可读性高的图表。</li>
+</ol>
+</li>
+<li>
+<p><strong>主要特点</strong>：结构高度模块化、层级清晰。Matplotlib 的设计思想是“一切皆对象”（有点像当初学习Java语言时学习的OOP编程思想），图中的每一个文字、线条、刻度都是一个独立的对象，都可以被精准地定制和修改。</p>
+</li>
+</ul>
+<h3 id="132">1.3.2 主要元素介绍<a class="headerlink" href="#132" title="Permanent link">&para;</a></h3>
+<p>根据图中的蓝色圆圈圈出的标注，图表的主要元素可以分为以下三大类：</p>
+<h4 id="1321">1.3.2.1. 容器与框架层（基础舞台）<a class="headerlink" href="#1321" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Figure (<code>plt.figure</code>)：最外层的整个大画布。它是所有元素的最高层级容器，包含了图表的所有内容。</li>
+<li>Axes (<code>fig.subplots</code>)：具体的绘图区域（子图/坐标系）。一个 Figure 可以包含多个 Axes。它是画图的主战场，绝大部分的绘图操作（如画线、加网格）都是针对 Axes 进行的。</li>
+<li>Spine (<code>ax.spines</code>)：边框线。即包裹住绘图区域的四条四周边界线（上下左右）。</li>
+</ul>
+<h4 id="1322">1.3.2.2. 数据表现层（图表核心）<a class="headerlink" href="#1322" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Line (<code>ax.plot</code>)：折线/曲线。用于表现连续趋势的数据线（如图中的蓝色和橙色曲线）。</li>
+<li>Markers (<code>ax.scatter</code>)：数据标记/散点。用于表现离散数据点的形状（如图中的紫色空心正方形）。在 Matplotlib 的底层逻辑中，“线（Line）”和“点（Marker）”其实是两个互相独立、甚至可以拆分的视觉元素。</li>
+<li>matplotlib中并不止于这两种数据表现类型，还有其他类型如Bar (<code>ax.bar</code>)</li>
+</ul>
+<h4 id="1323">1.3.2.3. 辅助说明层（图例与轴线）<a class="headerlink" href="#1323" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Title (<code>ax.set_title</code>)：图表标题。位于正上方，说明整张图画的是什么。</li>
+<li>Legend (<code>ax.legend</code>)：图例。用来解释不同颜色、形状的线条或散点分别代表什么数据（如图中的 <code>Blue signal</code> 和 <code>Orange signal</code>）。</li>
+<li>Grid (<code>ax.grid</code>)：网格线。背后的虚线网格，方便眼睛快速对齐并读取数据坐标。</li>
+<li>
+<p>xAxis / yAxis (<code>ax.xaxis</code> / <code>ax.yaxis</code>)：X 轴与 Y 轴本身。包含了轴线、刻度以及刻度标签的集合体。</p>
+</li>
+<li>
+<p>xlabel / ylabel (<code>ax.set_xlabel</code> / <code>ax.set_ylabel</code>)：坐标轴名称标签。说明 X 轴和 Y 轴分别代表什么物理含义。</p>
+</li>
+<li>Major/Minor tick (<code>set_major_locator</code> / <code>set_minor_locator</code>)：主刻度与次刻度。长一点的是主刻度（如 0, 1, 2），短一点的是次刻度（如 0.25, 0.5）。</li>
+<li>Major/Minor tick label (<code>set_major_formatter</code> / <code>set_minor_formatter</code>)：刻度文字标签。即显式印在刻度旁边的数字或文字（如“3”或“3.25”）。</li>
+</ul>
+<h2 id="14">1.4 编码风格<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
+<h3 id="141">1.4.1 风格说明<a class="headerlink" href="#141" title="Permanent link">&para;</a></h3>
+<p>matplotlib支持两种编码风格：显式接口风格（也叫"object-oriented style“，简称"OO-style"）与隐式接口风格（也叫"pyplot-style"）。简介如下。
+- OO-style：显式地创建画布与子图，在它们的基础上调用各种控制数据或样式的方法。
+- pyplot-style：依赖于 pyplot 隐式地创建与管理画布与子图，使用 pyplot 函数进行盲盒式管理来画图。</p>
+<p>在隐式风格中，Matplotlib 在幕后维护着一个“当前活动状态机”。当用户直接调用 <code>plt.plot()</code> 这种函数时，用户明明从来没有亲手创建过画布（Figure）和子图（Axes），但图却画出来了。这就是因为 <code>pyplot</code> 在自动进行以下隐式管理：
+- <strong>自动创建</strong>：发现用户明确没建画布？它会自动在后台建一个 <code>Figure</code>，并在里面塞进一个默认的子图 <code>Axes</code>。
+- <strong>自动追踪（最核心的管理）</strong>：如果用户一口气开了好几个窗口，或者画了好几个子图，<code>pyplot</code> 会在后台死死盯着：“哪一个画布是当前用户正在操作的？哪一个子图是当前活跃的？” **
+- <strong>自动路由</strong>：比如当用户敲下 <code>plt.title("我的图")</code> 时，<code>pyplot</code> 管理系统会立刻把这个标题发送给 当前处于活跃状态的那张画布里的那个子图 。</p>
+<p>个人认为，使用OO-style时，可以继承自己以前所学的面向对象编程思想来使用matplotlib画图，也更符合平常人思维习惯（明确责任主体，拿到句柄，使用句柄进行定点操作），当然<strong>OO-style是matplotlib是官方推荐的编码风格</strong>。</p>
+<p>这两种编程风格的差异与权衡参见官网解释：<a href="https://matplotlib.org/stable/users/explain/figure/api_interfaces.html#api-interfaces">Matplotlib Application Interfaces (APIs)</a></p>
+<h3 id="142-the-oo-style">1.4.2 the OO-style示例<a class="headerlink" href="#142-the-oo-style" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Sample data.</span>
+
+<span class="c1"># Note that even in the OO-style, we use `.pyplot.figure` to create the Figure.</span>
+<span class="c1"># 创建画布与子图。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">figsize=(5, 2.7)：其中创建了一张 “宽 5 英寸、高 2.7 英寸”（matplotlib中的默认单位是英寸） 的画布。英寸到像素的转换取决于一个叫 “DPI（每英寸像素点数，默认值是100） 的参数，所以会创建一个“宽500像素、高270像素” 的画布。</span>
+<span class="sd">layout=&#39;constrained&#39;：自动优化防止标签重叠溢出。考虑到调整画布尺寸，有些元素（比如标题、坐标轴标签）可能会被挤到画布边缘甚至切掉。加上此参数值它可以帮忙 计算并优化子图与大画布边缘的留白，确保用户无论把 `figsize` 改成什么奇怪的比例，轴标签和标题都绝对不会溢出画布。</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span> <span class="c1"># </span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1"># Plot some data on the Axes.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;quadratic&#39;</span><span class="p">)</span>  <span class="c1"># Plot more data on the Axes...</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>  <span class="c1"># ... and some more.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x label&#39;</span><span class="p">)</span>  <span class="c1"># Add an x-label to the Axes.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;y label&#39;</span><span class="p">)</span>  <span class="c1"># Add a y-label to the Axes.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Simple Plot&quot;</span><span class="p">)</span>  <span class="c1"># Add a title to the Axes.</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>  <span class="c1"># Add a legend.</span>
+<span class="c1"># plt.show() # 展示图形</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="143-the-pyplot-style">1.4.3 the pyplot-style示例<a class="headerlink" href="#143-the-pyplot-style" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Sample data.</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="s1">&#39;constrained&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1"># Plot some data on the (implicit) Axes.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;quadratic&#39;</span><span class="p">)</span>  <span class="c1"># etc.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;cubic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x label&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y label&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simple Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span class="c1"># plt.show() # 展示图形</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="15">1.5 绘图模板<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
+<p>就像写作文、论文会有相关模板一样，为了便于记忆与掌握其编写模式，也可以为使用matplotlib画图创建一个干净、规范且高度精简的 Matplotlib <strong>显式（面向对象风格）</strong> 绘图模板，方便初学者上手。
+同时可以此基础上添加一些其他复杂的配置与操作。</p>
+<p>精简注释版本如下：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 1: 准备数据 (Data Preparation)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 2: 创建画布与坐标系/子图 (Figure &amp; Axes)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 3: 绘制核心图表 (Plotting)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Quadratic Curve&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 4: 装饰与标注 (Customizing Labels, Title &amp; Legend)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X Axis Label&#39;</span><span class="p">)</span>                     
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y Axis Label&#39;</span><span class="p">)</span>                     
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Standard Template Simple Plot&#39;</span><span class="p">)</span>     
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>                       
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 5: 输出与渲染 (Display &amp; Save)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></p>
+<p>详细注释版本如下：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 0: 修改全局设置 (rcParams Settings)</span>
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># 设置具体字体为黑体</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.sans-serif&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SimHei&#39;</span><span class="p">]</span>
+<span class="c1"># 解决负号 &#39;-&#39; 显示为方块的问题</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 1: 准备数据 (Data Preparation)</span>
+<span class="c1"># 官网参考: https://matplotlib.org/stable/users/explain/quick_start.html#types-of-inputs-to-plotting-functions</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 2: 创建画布与坐标系/子图 (Figure &amp; Axes)</span>
+<span class="c1"># 官网参考: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 3: 绘制核心图表 (Plotting)</span>
+<span class="c1"># 官网参考: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html</span>
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># label 用于图例展示，linewidth 控制线粗，linestyle 控制线型</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Quadratic Curve&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 4: 装饰与标注 (Customizing Labels, Title &amp; Legend)</span>
+<span class="c1"># 轴标签参考: https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_xlabel.html</span>
+<span class="c1"># 标题参考:   https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html</span>
+<span class="c1"># 图例参考:   https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html</span>
+<span class="c1"># ==============================================================================</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X Axis Label&#39;</span><span class="p">)</span>                     <span class="c1"># 设置 X 轴名称</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y Axis Label&#39;</span><span class="p">)</span>                     <span class="c1"># 设置 Y 轴名称</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Standard Template Simple Plot&#39;</span><span class="p">)</span>     <span class="c1"># 设置图表正标题</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>                       <span class="c1"># 激活图例并固定在左上角</span>
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># STEP 5: 输出与渲染 (Display &amp; Save)</span>
+<span class="c1"># 显示参考: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html</span>
+<span class="c1"># 保存参考: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html</span>
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># 如果需要保存图片到本地，取消下面这行的注释（必须在 plt.show() 之前调用）</span>
+<span class="c1"># plt.savefig(&#39;my_plot.png&#39;, dpi=300)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">`plt.show()` 函数本身的返回值就是 `None`。也就是说，即使不加分号，直接写 `plt.show()`，Jupyter 也绝对不会打印任何内存地址。但可以养成良好的习惯：总是给最后一行语句末尾加上“;”</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+</code></pre></div></td></tr></table></div></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

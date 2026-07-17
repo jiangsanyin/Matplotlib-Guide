@@ -1,0 +1,1562 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Matplotlib 数据可视化基础教程">
+      
+      
+        <meta name="author" content="jiangsanyin">
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90/">
+      
+      
+        <link rel="prev" href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+      
+      
+        <link rel="next" href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>python绘图库-matplotlib-chp3 - Python绘图库 - Matplotlib学习笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matplotlib" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Python绘图库 - Matplotlib学习笔记" class="md-header__button md-logo" aria-label="Python绘图库 - Matplotlib学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python绘图库 - Matplotlib学习笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              python绘图库-matplotlib-chp3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC1%E7%AB%A0-01%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E8%AF%86Matplotlib/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第1章 安装与初识Matplotlib
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第2章 官方文档的介绍
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第3章 Matplotlib中图的组成
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第4章 Matplotlib中对图的操作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第5章 Matplotlib绘制常用图表
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../%E7%AC%AC6%E7%AB%A0-06%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第6章 注意事项
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python绘图库 - Matplotlib学习笔记" class="md-nav__button md-logo" aria-label="Python绘图库 - Matplotlib学习笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python绘图库 - Matplotlib学习笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC1%E7%AB%A0-01%E5%AE%89%E8%A3%85%E4%B8%8E%E5%88%9D%E8%AF%86Matplotlib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章 安装与初识Matplotlib
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第2章 官方文档的介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章 Matplotlib中图的组成
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章 Matplotlib中图的组成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-matplotlibapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 matplotlib中API构架分层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-axesartist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 坐标系Axes与Artist的属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 坐标系Axes与Artist的属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-api-axes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 最常用API-Axes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-artistgettersetter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Artist的属性与getter/setter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-artist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Artist的细化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Artist的细化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 基础图元primitives
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.1 基础图元primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1line-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）线条流派“Line Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2patch-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）面片流派“Patch Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3text-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）文本流派“Text Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （4）图像流派“Images”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （5）集合流派“Collection”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 容器对象containers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.2 容器对象containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1figure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）Figure“画布”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2axes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）Axes“子图/坐标系”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章 Matplotlib中对图的操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第5章 Matplotlib绘制常用图表
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%AC%AC6%E7%AB%A0-06%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章 注意事项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-matplotlibapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 matplotlib中API构架分层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-axesartist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 坐标系Axes与Artist的属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 坐标系Axes与Artist的属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-api-axes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 最常用API-Axes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-artistgettersetter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Artist的属性与getter/setter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-artist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Artist的细化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Artist的细化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 基础图元primitives
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.1 基础图元primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1line-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）线条流派“Line Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2patch-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）面片流派“Patch Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3text-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）文本流派“Text Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （4）图像流派“Images”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （5）集合流派“Collection”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 容器对象containers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.2 容器对象containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1figure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）Figure“画布”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2axes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）Axes“子图/坐标系”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="matplotlib">三、Matplotlib中图的组成<a class="headerlink" href="#matplotlib" title="Permanent link">&para;</a></h1>
+<p>以下内容以matplotlib官网的Tutorials 英文教程为基础，自己将其翻译成中文，并添加了自己的理解、结构图与示例。</p>
+<h2 id="31-matplotlibapi">3.1 matplotlib中API构架分层<a class="headerlink" href="#31-matplotlibapi" title="Permanent link">&para;</a></h2>
+<p>Matplotlib官方文档<a href="https://matplotlib.org/stable/tutorials/artists.html">Artist tutorial</a>将其API构架分为三层：<code>matplotlib.backend_bases.FigureCanvas</code>（笔者在官方完整API文档没有找到此类，但找到了<code>matplotlib.backend_bases.FigureCanvasBase</code>，它代表画布的基类，猜测应该是Artist tutorial中误写了。此章节中将使用<code>matplotlib.backend_bases.FigureCanvasBase</code>）、<code>matplotlib.backend_bases.Renderer</code>、<code>matplotlib.artist.Artist</code>。</p>
+<p>官方对它们的概述如下：
+-  <code>matplotlib.backend_bases.FigureCanvasBase</code> 画布，是绘制图形的区域。
+-  <code>matplotlib.backend_bases.Renderer</code> 渲染器，是知道如何在画布上绘制的对象。
+- <code>matplotlib.artist.Artist</code> 绘图对象或叫图元，是知道如何使用渲染器在画布上绘制图像的对象。</p>
+<p>如果将其以图文形式展示并稍加解释，大致如下：
+<img alt="" src="https://files.seeusercontent.com/2026/07/05/Xrl7/20260705133048550.png" />
+<code>matplotlib.backend_bases.FigureCanvasBase</code>与<code>matplotlib.backend_bases.Renderer</code>负责处理绘图过程、展示与资源管理的全部底层细节，<code>matplotlib.artist.Artist</code> 则处理所有高级结构（用户直接调用它，所以它是用户与前两者的媒介），例如表示和布局图形、文本和线条。根据官网文档显示，用户绝大多数时间都是在与<code>matplotlib.artist.Artist</code>打交道。</p>
+<p>Artist（绘图对象/图元）可以细分为两大类：primitives（基础图元/基元） 与 containers（容器对象/容器）。primitives代表那些绘制在画布上的基本图形对象，如：Line2D、Rectangle、Text 与 AxesImage 等等；containers则代表放置primitives的地方，如：Axis、Axes 与 Figure。
+从概念包含归属关系（非API类型继承关系）上，Artist 细分后的代表性事物如下图：
+<img alt="Artist绘图对象层次结构" src="https://files.seeusercontent.com/2026/07/16/8woD/20260716231247917.png" /></p>
+<p><strong>绘图的标准化流程</strong>：首先创建一个画布对象，然后通过画布对象创建出一个或多个坐标系（也叫子图），最后通过坐标系的相关帮助性方法（即matplotlib API中为坐标系提供的相关方法）创建出所需要的基础图元、设置其属性（如颜色、位置、透明度等），最后渲染展示整个绘图效果。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># two rows, one column, first plot</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="32-axesartist">3.2 坐标系Axes与Artist的属性<a class="headerlink" href="#32-axesartist" title="Permanent link">&para;</a></h2>
+<h3 id="321-api-axes">3.2.1 最常用API-Axes<a class="headerlink" href="#321-api-axes" title="Permanent link">&para;</a></h3>
+<p>在使用matplotlib进行绘图的过程中，Axes 是matplotlib API中最重要的类型，且是最经常使用且绝大多数时间都在使用的类型。这是因为坐标系是绝大部分绘图对象附着或放置之处。</p>
+<p>Axes提供了许多辅助函数（其实就是类型中包含的方法）来绘制常见的基础图元，比如经常用的plot()、text()、hist()、imshow()方法分别绘制了Line2D、Text、Rectangle、AxesImage 这些基础图元对象。Axes 提供的这些方法获取用户提供的数据，利用这些数据创建基础图元对象，并把它们添加到特定的容器中，最后在需要时渲染出整个画布及其中所有内容。
+用户只需要给Axes的方法提供参数数据即，这背后的一系列动作都由matplotlib内部管理机制自动完成，这套机制经常被称为matplotlib大管家。Matplotlib 大管家在本质上是一个由“脚本状态机层（<code>matplotlib.pyplot</code> 模块）”发号施令，通过“面向对象图元层（Artist API）”组织和调度万物，最终交由“后端引擎（Backend）”落地渲染的统一协调管理机制。</p>
+<p>默认情况下，坐标系区域在横纵方向分别占据画布大致77%左右长度，剩余的画布面积被转换成了四周的留白，留白区域可以用来放置坐标系标题、坐标轴刻度、刻度标签等内容。但坐标系区域可以通过修改默认参数值来调整：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">fig2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="c1"># 参数分别是x轴起点、y轴起点、宽度、长度（整个画布的宽高都算作1，起点与跨距用小数来表示）</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig2</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div></p>
+<p>在下面这个示例中，首先创建画布，然后通过画布对象创建坐标系对象。最后当执行<code>ax.plot</code>创建一个Line2D对象并把它附着在坐标系上，并返回这个Line2D对象。这个创建出来的Line2D对象其实可以通过<code>ax.lines</code>来直接获取，<code>ax.lines</code>的类型是列表，每个向坐标系添加的Line2D对象都会被添加到<code>ax.lines</code>末尾。
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span> <span class="c1">#创建画布</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span> <span class="c1">#创建坐标系（子图），默认就是一个1*1的坐标系</span>
+<span class="c1"># 绘制一个 Line2D 对象即一个线条，返回值line就是这个Line2D 对象</span>
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1">#x轴数据、y轴数据、线条颜色、线条宽度linewidth</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">此时，line 与 ax.lines[0] 其实是等同的</span>
+<span class="sd">print(line == ax.lines[0]) #返回True</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># plt.show();   # 此时如果再加上这行代码，即可展示绘制的图</span>
+</code></pre></div></td></tr></table></div></p>
+<p>此外，Axes除了提供了方法绘制核心绘图区域的基础图元，还提供了方法来配置与装饰x轴、y轴的刻度、刻度标签与坐标轴名称。
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1"># 此示例中，笔者为了显式展示相关效果，为某些区域设置了一些颜色或宽度，导致美观度可能下降</span>
+
+<span class="c1"># 创建画布</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="c1"># 设置画布fig的填充色为粉色、边框颜色为红色、框架宽度为4</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;pink&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="c1"># 微调画布，将子图（Axes）的“上边界”设定在整张画布物理高度的 80% 位置。</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="c1"># 添加2行1列共2个子图。并返回第1个子图ax1（从上到下、从左往右数，最开始的子图索引是1）</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="c1"># 设置子图ax1的y轴名称</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Voltage [V]&#39;</span><span class="p">)</span>
+<span class="c1"># 设置子图ax1的标题</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;A sine wave&#39;</span><span class="p">)</span>
+
+<span class="c1"># 指定起点、终点，按照固定步长产生一个数据序列</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="c1"># 构造一个正弦函数</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+<span class="c1"># 在子图ax1中使用plot方法绘制一条折线段</span>
+<span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># 设定随机种子值保证随机数复现</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
+
+<span class="c1"># 先前准备了一个画布，但只初始化并返回了第一个坐标系，第2个坐标系对应的画布区域是空的</span>
+<span class="c1"># 现在初始化并返回第2个坐标系</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">))</span>
+<span class="c1"># 在子图ax2中绘制了一个由50根小柱子组成的直方图，并返回三个底层艺术单元的引用</span>
+<span class="c1">#  n：数组，每一个柱子里落入的数据点的绝对数量。</span>
+<span class="c1">#  bins：数组，50个柱子边缘刻度边界值（50个柱子对应有51个边界值）</span>
+<span class="c1">#  patches：列表，是包含了 50 个 Rectangle（矩形基础图元）对象的列表</span>
+<span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="mi">50</span><span class="p">,</span>
+                            <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">)</span>
+
+<span class="c1"># 设置子图ax2的x轴名称</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time [s]&#39;</span><span class="p">)</span>
+<span class="c1"># 设置子图ax2对应的坐标系矩形(ax.patch)的填充色</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="c1"># 展示画布上的绘图效果，并做资源清理</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<img alt="" src="https://files.seeusercontent.com/2026/07/05/4rTp/20260705202727549.png" /></p>
+<h3 id="322-artistgettersetter">3.2.2 Artist的属性与getter/setter<a class="headerlink" href="#322-artistgettersetter" title="Permanent link">&para;</a></h3>
+<p>在matplotlib中，画布中的所有内容都是由matplotlib大管家派出的绘图对象即Artist绘制出来的，每个绘图对象都有一长串属性，可以通过它们来修改绘图对象的视觉效果。</p>
+<p>比如画布本身就包含一个代表其画布那个矩形的属性（fig.patch），这个矩形的大小与画布大小一样，用户可以拿到fig.patch这个属性后就可以对那个矩形进行设置（比如设置填充色、透明度、是否可见等）；类似地，坐标系本身也包含一个矩形区域，它就是由所有坐标轴围起来的那个区域（在二维直角坐标系中，它是一个矩形区域；在极坐标系中它是一个圆形或扇形区域。但不管是直角坐标系还是极坐标系，坐标系中对应的那块区域总是用 ax.patch 来获取），拿到ax.patch就可以坐标系区域的视觉效果进行配置。</p>
+<p>对于每一个绘图对象Artist都有如下属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alpha</td>
+<td>透明度。整型或浮点数，范围在[0,1]，默认为None表示完全不透明，越小越透明，0表示完全透明</td>
+</tr>
+<tr>
+<td>animated</td>
+<td>是否动画加速开关。布尔类型，True时表示开启，开启后，大管家在绘制动态图时会使用 <code>Blitting</code> 技术（只刷新运动的组件，不刷新静止的背景），能给动态图带来极大的流畅度提升。</td>
+</tr>
+<tr>
+<td>axes</td>
+<td>坐标系/子图。有些绘图对象Artist的此属性可能为None，表示它不属于任何一个具体的子图坐标系。如<code>fig.suptitle("我是全局总标题").axes</code>为None，即全局的画布总标题的axes的属性值为None。</td>
+</tr>
+<tr>
+<td>clip_box</td>
+<td>矩形裁剪区域。定义了该 Artist 允许被看到的矩形物理边界。</td>
+</tr>
+<tr>
+<td>clip_on</td>
+<td>是否开启裁剪开关。布尔类型，True时表示开启，此时组件超出子图边框时会把它剪掉。</td>
+</tr>
+<tr>
+<td>clip_path</td>
+<td>路径裁剪区域。它是任意形状的路径，默认为None，表示不指定路径裁剪区域即显示全部内容。指定时，表示只有落在指定路径路径几何边界内部的像素，才允许被渲染器渲染出来，其余部分将被隐藏。</td>
+</tr>
+<tr>
+<td>contains</td>
+<td>检测鼠标点击坐标点是否在某组件内部，需要用户自定义函数自行实现判断逻辑、并与点击事件绑定。</td>
+</tr>
+<tr>
+<td>figure</td>
+<td>组件所属的画布。某些绘图对象的figure属性值可以None，表示它还没有被添加具体的某个画布中，比如当用户调用构造函数<code>matplotlib.patches.Circle(...)</code>直接创建一个Circle实例时，此时它的figure属性值一般为None。</td>
+</tr>
+<tr>
+<td>label</td>
+<td>组件的文字标签。默认是空字符串。</td>
+</tr>
+<tr>
+<td>picker</td>
+<td>控制该组件能否被鼠标“点中”。</td>
+</tr>
+<tr>
+<td>transform</td>
+<td>组件空间定位解析器。就是说组件以何种参考对象来将代表空间位置的抽象“数字”变成屏幕上具体的“像素”点位置，这种参考变换之间要有一个变换矩阵。有三个核心的变换矩阵：ax.transData（默认值）、ax.transAxes、fig.transFigure</td>
+</tr>
+<tr>
+<td>visible</td>
+<td>组件是否可见。布尔值类型，默认值一般为True，表示可见。</td>
+</tr>
+<tr>
+<td>zorder</td>
+<td>图层顺序。数字类型，它决定谁盖在谁上面（画作的“前后图层”），数值越大图层越靠前。</td>
+</tr>
+<tr>
+<td>rasterized</td>
+<td>是否强行把矢量图强行变成高清像素位图。布尔类型，默认False表示关闭，保持纯矢量输出。</td>
+</tr>
+</tbody>
+</table>
+<p>matplotlib API中为上述每个属性提供了一个<code>getter</code>、<code>setter</code>方法，分别表示获取属性值、设置属性值。同时也支持在绘图对象上调用<code>set</code>方法同时设置多个属性值。
+matplotlib API中也提供了<code>matplotlib.artist.getp(...)</code>来一次性获取某绘图对象Artist的所有属性及值。另外因为matplotlib源码中注释的高规范可读性，其为每个类型（面向对象术语）提供了docstrings，所以通过使用help(xxx)也能查看指定绘图对象xxx的所有属性。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">...</span>
+<span class="c1"># 给坐标系ax2设置标题，并指定透明度</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Test Title&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># 坐标系对象ax2的title属性值是一个&#39;matplotlib.text.Text&#39;实例，它是` matplotlib.artist.Artist` 的子类，就是说ax2.title也是一个Artist实例。ax2.title也有alpha属性，可调用get_alpha()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">())</span>
+<span class="c1"># 再调用set_alpha()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">get_alpha</span><span class="p">()</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+<span class="c1"># 同时设置ax2.title的多个属性</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># ax2就是一个Artist实例，对其使用matplotlib.artist.getp 方法获取其所有属性</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">getp</span><span class="p">(</span><span class="n">ax2</span><span class="p">)</span>
+<span class="c1"># ax2.title 也是一个Artist实例，也可对其使用matplotlib.artist.getp 方法获取其所有属性</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">getp</span><span class="p">(</span><span class="n">ax2</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<span class="c1"># 调用python原生自带的help方法，输出ax2.title对应类型` matplotlib.artist.Artist`的 docstrings，其中就包含它的所有属性properties</span>
+<span class="n">help</span><span class="p">(</span><span class="n">ax2</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="33-artist">3.3 Artist的细化<a class="headerlink" href="#33-artist" title="Permanent link">&para;</a></h2>
+<p>在Matplotlib大管家的世界里，一切看得见的内容几乎都是 Artist。前面已经提到：Artist（绘图对象/图元）可以再细分为两大类：primitives（基础图元/基元） 与 containers（容器对象/容器）。primitives代表那些绘制在画布上的基本图形对象，如：<code>Line2D</code>、<code>Rectangle</code>、<code>Text</code> 与 <code>AxesImage</code> 等等；containers则代表放置primitives的地方，如：<code>Axis</code>、<code>Axes</code> 与 <code>Figure</code>。</p>
+<p>以下分别对primitives（基础图元/基元）与containers（容器对象/容器）的核心代表进行简述，阅读后可以后它们有个初步的认识。</p>
+<h3 id="331-primitives">3.3.1 基础图元primitives<a class="headerlink" href="#331-primitives" title="Permanent link">&para;</a></h3>
+<p><code>primitives</code> 代表那些最终绘制在画布上的标准图形实体对象，是具体展示数据的实体。在实际应用中，它以各种形式支撑着数据的可视化呈现：无论是展示数据变化趋势的线条（折线图的底层实体）、对比数据大小或分布范围的面片（柱状图/直方图的底层矩形）、还是用来展现海量离散数据的集合图元（散点图的底层大表），亦或是对图表进行说明的文字与范围标识的圆形、多边形，在后台全是一个个具体的 <code>primitives</code> 实例。常见的分类与核心代表如图所示。
+<img alt="primitives的细分与代表" src="https://files.seeusercontent.com/2026/07/16/kiF9/20260716231421139.png" /></p>
+<h5 id="1line-elements">（1）线条流派“Line Elements”<a class="headerlink" href="#1line-elements" title="Permanent link">&para;</a></h5>
+<p>类似于霓虹灯人偶舞蹈中的人偶，每一节/全身只有单一颜色的那种演员，它们在舞台上只有骨架、没有肉体。   它们是由无数个点连接而成的“极细钢丝”，可以改变它的长度、粗细（<code>linewidth</code>）和颜色，但因为它们内部没有所谓填充面积的概念，所以无从谈起给它们内部涂抹颜色（不支持 <code>facecolor</code>）。</p>
+<ul>
+<li>（1.1）<code>Line2D</code>（平面线条）：最经典最常见的线条。平时绘制的折线图、曲线图，甚至坐标轴上那一排排细小刻度线，底层都是用它一根根拉出来的。</li>
+<li>（1.2）三维曲线（3D Plot）：在xy平面的基础上进一步扩展了能力，能够上下移动、“会飞”的线条。</li>
+</ul>
+<h5 id="2patch-elements">（2）面片流派“Patch Elements”<a class="headerlink" href="#2patch-elements" title="Permanent link">&para;</a></h5>
+<p>不再是霓虹灯人偶舞蹈中的人偶那样每一节/全身只有单一颜色，此类演员不仅有骨架，而且长了肉体（闭合面积）。    凡是有闭合面积的圈（演员的身体关节是一个闭合面积的形状），就会有外圈颜色与内部面积颜色的概念。它们全都继承自 <code>Patch</code>类型 ，适合用来涂色和圈定范围。</p>
+<ul>
+<li>（2.1）<code>Rectangle</code>（矩形）：画布的底色（<code>fig.patch</code>）、子图的背景（<code>ax.patch</code>），还是在画柱状图（<code>bar</code>）和直方图（<code>hist</code>）时那一排排并列的柱子，本质上全是一块块长宽不同的矩形方砖。</li>
+<li>（2.2）<code>Circle/Ellipse</code>（圆形/椭圆）：在数据分析里，如果想在密密麻麻的特征图、散点图上，把某几个最核心的异常数据点“狠狠地圈起来”引起读者注意，掏出它来准没错。有个很形象的比喻：有点像是舞台上的探照灯。</li>
+<li>（2.3）<code>Polygon</code>（多边形）：给出一串有序的坐标点，然后像连线游戏一样（有点像连接养鱼时圈中水域面积时用的多个浮漂），把最后一个点和第一个点死死连在一起，连出一个闭合的、形状不规则的面积区域，这个面积区域就是一个多边形。多边形同样可以通过 <code>facecolor</code> 填充不同的色彩，常用于高亮显示置信区间。</li>
+<li>（2.4）<code>Wedge</code>（扇形/楔形）：画饼图（<code>ax.pie()</code>）时，那些被切成不同大小、用来代表百分比的“扇形区域”，在底层，每个“扇形区域”就是一个<code>Wedge</code>实例。另外，极坐标系的圆盘也是<code>Wedge</code>。</li>
+</ul>
+<h5 id="3text-elements">（3）文本流派“Text Elements”<a class="headerlink" href="#3text-elements" title="Permanent link">&para;</a></h5>
+<p>大管家把所有的文字都封装成了统一的 <code>Text</code> 实例。为了防止字体的颜色和背景不协调（如二者的颜色相同或相近，导致文字无法正常展示或不明显），每个 <code>Text</code> 实例在底层都暗中拥有自带了一个背景板（一个<code>Rectangle</code> 边框），可以随时给文字加阴影、设置合适样式的背景等。   </p>
+<ul>
+<li><code>Text</code>（通用文本）：字符类的组件都是<code>Text</code>。如，子图标题、 $X/Y$ 轴的标签，以及在图表里随手贴的批注文字，在后台全是一个个 <code>Text</code> 实例。 </li>
+</ul>
+<h5 id="4images">（4）图像流派“Images”<a class="headerlink" href="#4images" title="Permanent link">&para;</a></h5>
+<p>是数字与像互映射大师，可以处理庞大的矩阵数据。具体就是把一堆乱七八糟的矩阵二维数字（比如医疗 MRI 断层扫描数据、热力图矩阵），根据指定的映射规则“参数<code>cmap</code>”，把不同大小的数字映射成不同颜色的像素格子。  </p>
+<ul>
+<li><code>AxesImage</code>（图像像素矩阵）   ：调用 <code>ax.imshow()</code> 时返回的就是 <code>AxesImage</code> 实例。在机器学习中看混淆矩阵、在医疗行业看特征图，都是用它把抽象的权重数字变成像素图像。</li>
+</ul>
+<h5 id="5collection">（5）集合流派“Collection”<a class="headerlink" href="#5collection" title="Permanent link">&para;</a></h5>
+<p>是专门用来处理独立分散几何个体的工具。图像流派“Images”与集合流派“Collection”都是为了应付海量数据而生的具体primitives组件，但它们还是有显著区别的：<code>Images</code> 渲染的是“连续的像素格子”，而 <code>Collection</code> 渲染的是“独立的几何个体”，这些独立的几何个体不一定是连续的。
+在工业级实际生产应用中，要在图里画 10 万个散点时，如果创建 10 万个独立的 <code>Circle</code> 实例，内存和 CPU 当场就会卡瘫痪（即使有显卡也没有被使用到的机会）。matplotlib为了应对与处理此场景问题，开发了 <code>Collection</code> 。它把几万个点的坐标和颜色直接打包，由CPU在内存中合并成一整张大表后，直接传递给显卡。显卡最擅长处理这种批量的结构化数据，只要计算一次，就能把几万个点一次性渲染出来（当然普通的使用场景下，几百个散点时不需要使用到显卡也行）。</p>
+<ul>
+<li><code>Collections</code>（图元集合 / 散点军团）：是大规模散点的救命神器。调用 <code>ax.scatter()</code> 绘制密密麻麻的散点图时，返回的其实就是它（<code>PathCollection</code>）。在处理海量患者医疗数据分布时，它绝对会使用到的性能降维利器。</li>
+</ul>
+<h3 id="332-containers">3.3.2 容器对象containers<a class="headerlink" href="#332-containers" title="Permanent link">&para;</a></h3>
+<p>containers则代表放置primitives的地方，最常见的容器对象包括：<code>Figure</code>、<code>Axes</code> 与<code>Axis</code> 。
+<img alt="containers的细分与代表" src="https://files.seeusercontent.com/2026/07/08/5Pex/20260708215310090.png" />
+如果说 <code>primitives</code> 是在舞台上表演的各个具体演员，那么 <code>containers</code> 就是搭建舞台的各级主办方与舞台框架。它们自己通常不负责展示核心数据，但负责提供物理坐标系、撑起整张画布，给基础图元们提供附着与展示的空间。</p>
+<h4 id="1figure">（1）Figure“画布”<a class="headerlink" href="#1figure" title="Permanent link">&para;</a></h4>
+<p>它是舞台的“投资人 / 整张地皮”。代表整个绘图窗口或者整张物理打印纸，是整张图画的“总管家”。通过它，可以控制整张图的物理尺寸（<code>figsize</code>）、背景色，给整个绘图窗口取一个全局总标题，或者裁切与保存出最终的图片文件。</p>
+<p>画布是绘图对象中最顶级的对象容器。常说的一个画布窗口，其实就是一个<code>matplotlib.figure.Figure</code>实例，它包含了整个图表里的一切组件。画布有很多常用的属性，这些属性分别包含着画布中经常用到的<code>primitives</code>与<code>containers</code>，常见的如下：</p>
+<table>
+<thead>
+<tr>
+<th>画布属性名</th>
+<th>代表的意义</th>
+<th>相关说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>axes</td>
+<td>坐标系（<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes"><code>Axes</code></a>）列表</td>
+<td>（1）通过<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.add_subplot.html#matplotlib.figure.Figure.add_subplot"><code>add_subplot(...)</code></a> 、 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.add_axes.html#matplotlib.figure.Figure.add_axes"><code>add_axes(...)</code></a>方法向画布中添加的坐标糸实例将添加到axes列表末尾。（2）动态删除画布某子图坐标系，要先获取对应的坐标系，然后通过<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.artist.Artist.remove.html#matplotlib.artist.Artist.remove"><code>Axes.remove()</code></a>方法，不要直接通过<code>fig.axes.remove(某具体子图坐标系实例)</code>这样的python原生列表中删除元素的方法删除，这样会引起matplotlib大管家内数据的混乱与不一致。matplotlib中几乎都是这样的规律“要通过matplotlib提供的标准API去添加或删除指定的绘图对象，以保证大管家内部数据的统一与一致。"</td>
+</tr>
+<tr>
+<td>patch</td>
+<td>坐标系背景，是一个（<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html#matplotlib.patches.Rectangle" title="matplotlib.patches.Rectangle"><code>Rectangle</code></a>）对象</td>
+<td>拿到矩形对象可以直接修改它的属性如填充色：<code>fig.patch.set_facecolor('#1e272e')</code></td>
+</tr>
+<tr>
+<td>legends</td>
+<td>是画布级别的图例（<a href="https://matplotlib.org/stable/api/legend_api.html#matplotlib.legend.Legend" title="matplotlib.legend.Legend"><code>Legend</code></a>）列表（不同级别的对象容器的legends不存在包含关系，而是相关隔离的。所以通过ax.legend()产生的图例是属于某个具体子图的，不在此范围）</td>
+<td>不在子图里量的图例，而是专属于画布的图例。</td>
+</tr>
+<tr>
+<td>lines</td>
+<td>是画布级别的线条（<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D" title="matplotlib.lines.Line2D"><code>Line2D</code></a>）列表。一般只会向坐标系中添加线条，然后通过<code>Axes.lines</code>获取)</td>
+<td>使用时的推荐做法：（1）通过<code>fig.lines.extend(...)</code>方法向<code>fig.lines</code>添加线条时，最好给线条对象加上参数<code>transform=fig.transFigure</code>即使用画布相对空间。（2）或者就通过调用画布提供专门用来添加线条的方法：fig.text()、fig.legend()</td>
+</tr>
+<tr>
+<td>patches</td>
+<td>是画布级别的面片（<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Patch.html#matplotlib.patches.Patch" title="matplotlib.patches.Patch"><code>Patch</code></a>）列表 。一般只会向坐标系中添加面片实例如矩形、椭圆等，然后通过<code>Axes.patches</code>获取)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>是画布级别的文本（<a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text"><code>Text</code></a>）列表</td>
+<td><code>fig.suptitle(...)</code>设置画布标题、<code>fig.text(...)</code>设置一个普通文本对象，都会在fig.textx添加一个元素。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2axes">（2）Axes“子图/坐标系”<a class="headerlink" href="#2axes" title="Permanent link">&para;</a></h4>
+<p>它是舞台上的“独立分会场“。在使用 Matplotlib 进行绘图时，与绝大多数人打交道最多的容器。只要在这个坐标系里调用 <code>ax.plot()</code> 或 <code>ax.bar()</code>，坐标系Axes就会自动把对应的折线图与柱状图绘制出来，并使其附着在自己的空间内。</p>
+<p>一个画布上可以分布多个 <code>Axes</code>（多个 <code>Axes</code>在画布上的分布规律有点像九宫格，但相邻的格子可以合并为一个 <code>Axes</code>）。每个 <code>Axes</code>拥有自己独立的网格线、独立的图例，互不干扰。</p>
+<p>每个 <code>Axes</code>坐标系容器又包含以下两个常见的子容器：<code>XAxis</code>、<code>YAxis</code>，它们分别表示X坐标轴与Y坐标轴：
+- <code>XAxis</code>（X 坐标轴）：归属于当前子图舞台的“横向规矩尺”。负责看管子图横向的数据边界。上面的横向轴线、刻度线、刻度标签以及轴标题，底层实现上全部由它管理。
+- <code>YAxis</code>（Y 坐标轴）：归属于当前子图舞台的“纵向规矩尺”。负责看管子图纵向的数据边界。上面的纵向轴线、刻度线、刻度标签以及轴标题，底层实现上全部由它管理。</p>
+<p>Axes“子图/坐标系”（底层是一个<code>matplotlib.axes.Axes</code>实例）是整个Matplotlib绘图世界的中心。它包含了整个画布中绝大多数绘图对象Artist的实际装载与管理。同时，Axes“子图/坐标系”提供了大量的辅助方法用于创建与添加绘图对象，又提供了一些属性从而可以便捷对Axes“子图/坐标系”中所包含的绘图对象进行访问。
+- Axes“子图/坐标系”提供的常用辅助方法：</p>
+<table>
+<thead>
+<tr>
+<th>Axes 的辅助方法</th>
+<th>创建与返回的绘图对象</th>
+<th>创建的绘图对象存储位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.annotate.html#matplotlib.axes.Axes.annotate" title="matplotlib.axes.Axes.annotate"><code>annotate</code></a> - 文本箭头注释</td>
+<td><a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Annotation" title="matplotlib.text.Annotation"><code>Annotation</code></a></td>
+<td>ax.texts</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html#matplotlib.axes.Axes.bar" title="matplotlib.axes.Axes.bar"><code>bar</code></a> - 柱状图</td>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html#matplotlib.patches.Rectangle" title="matplotlib.patches.Rectangle"><code>Rectangle</code></a></td>
+<td>ax.patches</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.errorbar.html#matplotlib.axes.Axes.errorbar" title="matplotlib.axes.Axes.errorbar"><code>errorbar</code></a> - 误差棒图</td>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D" title="matplotlib.lines.Line2D"><code>Line2D</code></a> and <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html#matplotlib.patches.Rectangle" title="matplotlib.patches.Rectangle"><code>Rectangle</code></a></td>
+<td>ax.lines and ax.patches</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.fill.html#matplotlib.axes.Axes.fill" title="matplotlib.axes.Axes.fill"><code>fill</code></a> - 区域填充图 / 面积图</td>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Polygon.html#matplotlib.patches.Polygon" title="matplotlib.patches.Polygon"><code>Polygon</code></a></td>
+<td>ax.patches</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist" title="matplotlib.axes.Axes.hist"><code>hist</code></a> - 直方图</td>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html#matplotlib.patches.Rectangle" title="matplotlib.patches.Rectangle"><code>Rectangle</code></a></td>
+<td>ax.patches</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html#matplotlib.axes.Axes.imshow" title="matplotlib.axes.Axes.imshow"><code>imshow</code></a> - 图像数据展示 / 热力图与像素矩阵贴图</td>
+<td><a href="https://matplotlib.org/stable/api/image_api.html#matplotlib.image.AxesImage" title="matplotlib.image.AxesImage"><code>AxesImage</code></a></td>
+<td>ax.images</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend" title="matplotlib.axes.Axes.legend"><code>legend</code></a> - 子图图例</td>
+<td><a href="https://matplotlib.org/stable/api/legend_api.html#matplotlib.legend.Legend" title="matplotlib.legend.Legend"><code>Legend</code></a></td>
+<td>ax.get_legend()</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="matplotlib.axes.Axes.plot"><code>plot</code></a> - 折线图</td>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html#matplotlib.lines.Line2D" title="matplotlib.lines.Line2D"><code>Line2D</code></a></td>
+<td>ax.lines</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="matplotlib.axes.Axes.scatter"><code>scatter</code></a> - 散点图 / 气泡图</td>
+<td><a href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.PolyCollection" title="matplotlib.collections.PolyCollection"><code>PolyCollection</code></a></td>
+<td>ax.collections</td>
+</tr>
+<tr>
+<td><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.text.html#matplotlib.axes.Axes.text" title="matplotlib.axes.Axes.text"><code>text</code></a> - 纯文本标签 / 独立艺术字弹幕</td>
+<td><a href="https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text" title="matplotlib.text.Text"><code>Text</code></a></td>
+<td>ax.texts</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Axes“子图/坐标系”提供的常用属性方法：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Axes 的属性名</th>
+<th>属性代表的意义</th>
+<th>相关操作或注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>artists</td>
+<td>记录通过 <code>ax.add_artist()</code> 添加且无法归类的特殊绘图对象。折线、柱状图、圆、文字都有自己的专属存放位置（<code>lines</code>, <code>patches</code>, <code>texts</code>），它们不会出现在 <code>ax.artists</code> 里。</td>
+<td>如果想遍历子图中的一切组件（包括图元演员与坐标轴等子容器），使用<code>ax.get_children()</code></td>
+</tr>
+<tr>
+<td>patch</td>
+<td>代表Axes背景矩形的<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.Rectangle.html#matplotlib.patches.Rectangle" title="matplotlib.patches.Rectangle"><code>Rectangle</code></a>实例</td>
+<td>可以通过它直接修改子图舞台的背景色或边框，例如：<code>ax.patch.set_facecolor('lightgray')</code>。</td>
+</tr>
+<tr>
+<td>collections</td>
+<td>记录各种“集合图元（Collection）”的列表，主要用来批量装载海量同类图元以优化性能。例如：<code>ax.scatter()</code> 产生的散点集合、<code>ax.errorbar()</code> 批量打包的误差线段集合、以及由高层 API（如 3D 表面图）自动生成的批量多边形集合（PolyCollection）。</td>
+<td>集合对象是为了优化内存而设计的。如果用 <code>scatter</code> 画了 1000 个点，它们不会产生 1000 个 <code>patch</code>，而是以 1 个集合的形式保存 <code>ax.collections</code> 里。</td>
+</tr>
+<tr>
+<td>images</td>
+<td>记录子图内所有“二维像素贴图（Image）”的列表。</td>
+<td></td>
+</tr>
+<tr>
+<td>lines</td>
+<td>记录子图内所有“二维线条（Line2D）”的列表。所有通过 <code>ax.plot()</code> 绘制出来的折线、趋势线、均值辅助线，都会在这里登记入册。</td>
+<td>凡是通过 <code>ax.plot()</code> 刷出来的折线会在这里登记。<strong>注意：</strong> <code>ax.errorbar()</code> 产生的误差图的主线和中心点也会记录在这里。</td>
+</tr>
+<tr>
+<td>patches</td>
+<td>记录子图内部所有“二维几何面片（Patch）”的列表。包含通过 <code>ax.bar()</code> 画的柱状图矩形、<code>ax.hist()</code> 的直方图砖块、以及手工添加的圆/椭圆（<code>Circle</code>/<code>Ellipse</code>）、多边形（<code>Polygon</code>）等。记录子图内部所有独立的“二维几何面片（Patch）”。包含通过 <code>ax.bar()</code> 画的柱状图矩形、<code>ax.hist()</code> 的直方图砖块，以及<strong>手工单点添加</strong>的圆（<code>Circle</code>）、<strong>独立多边形（<code>Polygon</code>）</strong>。</td>
+<td>柱状图的每一根柱子都是一个独立的 <code>Rectangle</code> 实例。如果想批量给柱子染色，可以通过遍历 <code>ax.patches</code> 逐个调用 <code>.set_facecolor()</code>。</td>
+</tr>
+<tr>
+<td>texts</td>
+<td>记录子图内部所有“文本标签（Text）”的列表。包含通过 <code>ax.text()</code> 手工打的艺术字、<code>ax.annotate()</code> 做的箭头引线标注，以及各个数据点的文本标签。</td>
+<td><strong>注意：</strong> 子图的轴标题（Title）虽然也是 <code>Text</code> 实例，但它有自己的独立专属指针 <code>ax.title</code>，通常不通过遍历 <code>ax.texts</code> 来修改标题。</td>
+</tr>
+<tr>
+<td>xaxis</td>
+<td>代表当前子图舞台的“横向规矩尺”（一个独立的 <code>XAxis</code> 子容器实例）。</td>
+<td></td>
+</tr>
+<tr>
+<td>yaxis</td>
+<td>代表当前子图舞台的“纵向规矩尺”（一个独立的 <code>YAxis</code> 子容器实例）。</td>
+<td></td>
+</tr>
+<tr>
+<td>#### （3）Axis“坐标轴”</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>它是大管家抽象出来的“坐标轴基类”，是 <code>XAxis</code> （X坐标轴）和 <code>YAxis</code>（Y坐标轴） 共同的“父类”。它本身不分横纵，纯粹在底层负责定义一条标准的规矩轴应该怎么装载轴线、刻度、刻度标签和轴标题。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>坐标轴（底层是一个<code>matplotlib.axis.Axis</code>实例）负责处理刻度、网格、刻度标签和坐标轴标签相关操作。比如它可以配置X轴上刻度是显示在轴线的上面还是下面（甚至上下都显示，且配置成两套不同的刻度），类似地也可以配置Y轴上刻度是显示在轴线的左边还是右边（甚至左右都显示，且配置成两套不同的刻度）。此处坐标轴还存储了原始数据（绘制图表时传递进来来的原始数据，它决定了坐标轴的<code>data intervals</code> 即数据区间，代表原始数据的绝对边界）与视野范围（叫<code>view intervals</code> 即视窗区间，它代表了图表窗口当前<strong>肉眼可见的、呈现出来的数学边界</strong>。在对图表进行缩放与移动时，就需要调整<code>view intervals</code>）。最后，坐标轴还可以设置定位器（<a href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="matplotlib.ticker.Locator"><code>Locator</code></a>）与格式化器（<a href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="matplotlib.ticker.Formatter"><code>Formatter</code></a>），它们分别决定刻度的位置与刻度对应的值是如何映射成为对应的显式字符串的。
+对于定位器的理解，举个例子就是：是按照“每隔 10 点点一个（等间距线性）”标记刻度，和“按对数 $10^x$ 级数递增”来标记刻度（此时对于原始数据10、100、1000，它们在X轴上分别对应的刻度值是1、2、3）。对于格式化器，可以简单理解为一个映射函数，它将刻度值原始通过特定的映射函数映射成指定格式的字符串。</p>
+<p>Axis也提供了一些属性以便用户能够便捷获取其中存储的一些绘图对象。拿到之后，一般是不推荐对它们通过python原生方法进行增加、删除或修改的，而应该通过matpotlib提供的封装API来操作。比如说修改坐标轴的标题、刻度、刻度标签等，虽然可以分别通过如下方式来实现：<code>axis.label = xxx</code>、强行往 <code>axis.majorTicks</code> 列表里 <code>append</code> 新的 Tick、修改 <code>axis.majorTicks[i].text</code> 的字符串，而应该调用对应的封装好的方法：<strong><code>ax.set_xlabel()</code></strong> / <strong><code>ax.set_ylabel()</code></strong>、<code>axis.set_major_locator(具体的Locator)</code>或ax.set_xticks([位置列表])、<code>axis.set_major_formatter(具体的Formatter)</code>或ax.set_xticklabels([文字列表])。</p>
+<p>如果要设置刻度与网格的样式(如颜色、粗细、方向)，应该要使用<code>ax.tick_params()</code>，具体细节见<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.tick_params.html#matplotlib.axes.Axes.tick_params" title="matplotlib.axes.Axes.tick_params"><code>tick_params</code></a>。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
