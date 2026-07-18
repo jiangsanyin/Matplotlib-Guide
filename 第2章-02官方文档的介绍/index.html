@@ -725,21 +725,34 @@
 <hr />
 <p>官网的Tutorials教程包含5个子章节：Pyplot tutorial、Coding shortcuts、Image tutorial、The Lifecycle of a Plot、Artist tutorial。
 <img alt="20260628171259066.png" src="https://files.seeusercontent.com/2026/06/28/hN2t/20260628171259066.png" /></p>
+<hr />
 <p>它们的内容或作用分别如下：</p>
+<p><strong>(1) Pyplot tutorial</strong>： 探索性数据分析的”快刀指南“。</p>
 <ul>
-<li><strong>(1) Pyplot tutorial</strong>： 探索性数据分析的”快刀指南“。</li>
 <li><strong>它是干什么的</strong>：专门教用户如何使用 <code>matplotlib.pyplot</code> 这个面向过程的状态机接口。</li>
 <li><strong>为什么独立存在</strong>：正如官网所述，它是为了照顾从 MATLAB 转过来的用户，以及需要快速看一眼数据趋势（EDA）的初学者。它教的是最不用动脑子、最隐式、代码量最小的画图方式。</li>
-<li><strong>(2) Coding shortcuts</strong>： 规范与高效“编码指南”。</li>
+</ul>
+<hr />
+<p><strong>(2) Coding shortcuts</strong>： 规范与高效“编码指南”。</p>
+<ul>
 <li><strong>它是干什么的</strong>：教用户如何用更高阶、更现代的 Python 语法来精简绘图代码。</li>
 <li><strong>为什么独立存在</strong>：它包含了很多让用户少写几行代码的“核心秘籍”。比如这样的代码： <code>ax.set(xlabel="...", ylabel="...", title="...")</code>。不要一行行调用<code>set_xxx</code>了，而是用一个 <code>.set()</code> 复合调用直接使用关键字参数！它的目的就是为了提升用户的工程效率，减少冗余代码。</li>
-<li><strong>(3) Image tutorial</strong>： 计算机视觉与多维数据的”数字调色盘“。</li>
+</ul>
+<hr />
+<p><strong>(3) Image tutorial</strong>： 计算机视觉与多维数据的”数字调色盘“。</p>
+<ul>
 <li><strong>它是干什么的</strong>：专门教用户如何利用 NumPy 数组（NDArray） 来处理、缩放、并渲染像素级的图像数据。</li>
 <li><strong>为什么独立存在</strong>：AI 领域的图像通常是二维矩阵（灰度图）或三维矩阵（RGB）。这个教程不是为了教用户画折线，而是为了教用户如何把矩阵像素化输出、如何通过 <code>cmap</code>（颜色映射表）和 <code>clim</code>（色彩对比度范围）来做视觉增强。它是专门留给 CV（计算机视觉）工程师和矩阵计算研究员的特供指南。</li>
-<li><strong>(4) The Lifecycle of a Plot</strong>： 工业级工程落地的“剧本复盘”。</li>
+</ul>
+<hr />
+<p><strong>(4) The Lifecycle of a Plot</strong>： 工业级工程落地的“剧本复盘”。</p>
+<ul>
 <li><strong>它是干什么的</strong>：用一个极具实战意义的真实业务数据，从零开始，带用户经历：创建画布 $\rightarrow$ 绘制初稿 $\rightarrow$ 样式微调 $\rightarrow$ 全局配置调整 $\rightarrow$ 导出生产级图片（PDF/PNG）的完整生命周期。</li>
 <li><strong>为什么独立存在</strong>：API 手册是散落的积木，而这里提供的是<strong>标准工业流水线样板房</strong>。它手把手教用户如何在一个脚本中，优雅地控制 Matplotlib 大管家内部管理系统的生命周期。</li>
-<li><strong>(5) Artist tutorial</strong>： 彻底打通底层架构的“任督二脉”。</li>
+</ul>
+<hr />
+<p><strong>(5) Artist tutorial</strong>： 彻底打通底层架构的“任督二脉”。</p>
+<ul>
 <li><strong>它是干什么的</strong>：向用户展示 Matplotlib 大管家内部管理系统的底牌，深度剖析 <code>Figure</code>、<code>Axes</code>、<code>Axis</code> 的包含树状网络，以及 <code>ax.lines</code>、<code>ax.patches</code> 这些图元容器。</li>
 <li><strong>为什么独立存在</strong>：帮用户建立起一套“万物皆绘图对象（Artist）”的宏观世界观。读懂了它，用户使用 Matplotlib 时，可以从“隐式调包”走向“显式架构”（如通过<code>ax.patches</code> 列表里去逆向操控某一个柱子的颜色或加数字标签），并洞悉大管家的“绘制心跳”（其中描述了每一个图元对象如何调用底层 <code>Renderer</code>（渲染器）将自己绘制到 <code>Canvas</code>（画布）上的机制）。它是用户告别堆砌式代码、真正走向“底层掌控者与高阶定制库作者”的通关必经之路。</li>
 </ul>
