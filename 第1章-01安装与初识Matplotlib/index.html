@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -979,6 +979,7 @@
 
 
 <p>笔者学习与使用matplotlib过程中做了相关笔记，然后将其整理成了此文档。</p>
+<p>Matplotlib系统文档已经归档为开源Github项目：<code>https://github.com/jiangsanyin/Matplotlib-Guide</code>，在线浏览：<code>https://jiangsanyin.github.io/Matplotlib-Guide/</code></p>
 <h1 id="matplotlib">一、安装与初识matplotlib<a class="headerlink" href="#matplotlib" title="Permanent link">&para;</a></h1>
 <p>Matplotlib 是 Python 中最核心、最老牌的数据可视化（绘图）基础库。它就像是 Python 世界里的“数字画笔”，能够将 NumPy 数组或 Pandas 抽象的数据，转化为折线图、柱状图、散点图、3D 图等各种专业的静态、动态或交互式图表。它的设计理念深受 MATLAB 的影响（其核心子库 <code>pyplot</code> 的语法与 MATLAB 高度相似），由于其功能极其强大、底层控制极其精细，如今它已成为大模型特征分析、医疗数据工程以及科学计算领域中不可或缺的画图利器。</p>
 <p>虽然 Matplotlib 的名字和日常使用中大多数的场景都集中在平面二维（2D）图表上，但它其实也具备绘制三维（3D）图形的能力。Matplotlib 内置了一个叫做 mplot3d 的工具包，不需要额外安装任何第三方库，就能直接绘制出各种 3D 图表。</p>
@@ -989,7 +990,7 @@
 <li>官网：<code>https://matplotlib.org/index.html</code></li>
 <li>案例：<code>https://matplotlib.org/gallery/index.html</code></li>
 <li>官方所有示例源码：<code>https://matplotlib.org/stable/tutorials/index.html</code></li>
-<li>项目的github仓库地址：<code>https://github.com/matplotlib/matplotlib</code></li>
+<li>matplotlib官方github仓库地址：<code>https://github.com/matplotlib/matplotlib</code></li>
 </ul>
 <h2 id="11-matplotlib">1.1 安装matplotlib<a class="headerlink" href="#11-matplotlib" title="Permanent link">&para;</a></h2>
 <p>本文以 <code>python 3.11.9</code>、`matplotlib 3.11.0 为环境来描述。以下内容中涉及所述的stable版本matplotlib就是指2026年6月11日发布的matplotlib v3.11，它为当前最新稳定版。
@@ -1116,10 +1117,12 @@ matplotlib-inline                        0.1.7
 <p>matplotlib支持两种编码风格：显式接口风格（也叫"object-oriented style“，简称"OO-style"）与隐式接口风格（也叫"pyplot-style"）。简介如下。
 - OO-style：显式地创建画布与子图，在它们的基础上调用各种控制数据或样式的方法。
 - pyplot-style：依赖于 pyplot 隐式地创建与管理画布与子图，使用 pyplot 函数进行盲盒式管理来画图。</p>
-<p>在隐式风格中，Matplotlib 在幕后维护着一个“当前活动状态机”。当用户直接调用 <code>plt.plot()</code> 这种函数时，用户明明从来没有亲手创建过画布（Figure）和子图（Axes），但图却画出来了。这就是因为 <code>pyplot</code> 在自动进行以下隐式管理：
-- <strong>自动创建</strong>：发现用户明确没建画布？它会自动在后台建一个 <code>Figure</code>，并在里面塞进一个默认的子图 <code>Axes</code>。
-- <strong>自动追踪（最核心的管理）</strong>：如果用户一口气开了好几个窗口，或者画了好几个子图，<code>pyplot</code> 会在后台死死盯着：“哪一个画布是当前用户正在操作的？哪一个子图是当前活跃的？” **
-- <strong>自动路由</strong>：比如当用户敲下 <code>plt.title("我的图")</code> 时，<code>pyplot</code> 管理系统会立刻把这个标题发送给 当前处于活跃状态的那张画布里的那个子图 。</p>
+<p>在隐式风格中，Matplotlib 在幕后维护着一个“当前活动状态机”。当用户直接调用 <code>plt.plot()</code> 这种函数时，用户明明从来没有亲手创建过画布（Figure）和子图（Axes），但图却画出来了。这就是因为 <code>pyplot</code> 在自动进行以下隐式管理：</p>
+<ul>
+<li><strong>自动创建</strong>：发现用户明确没建画布？它会自动在后台建一个 <code>Figure</code>，并在里面塞进一个默认的子图 <code>Axes</code>。</li>
+<li><strong>自动追踪（最核心的管理）</strong>：如果用户一口气开了好几个窗口，或者画了好几个子图，<code>pyplot</code> 会在后台死死盯着：“哪一个画布是当前用户正在操作的？哪一个子图是当前活跃的？” **</li>
+<li><strong>自动路由</strong>：比如当用户敲下 <code>plt.title("我的图")</code> 时，<code>pyplot</code> 管理系统会立刻把这个标题发送给 当前处于活跃状态的那张画布里的那个子图 。</li>
+</ul>
 <p>个人认为，使用OO-style时，可以继承自己以前所学的面向对象编程思想来使用matplotlib画图，也更符合平常人思维习惯（明确责任主体，拿到句柄，使用句柄进行定点操作），当然<strong>OO-style是matplotlib是官方推荐的编码风格</strong>。</p>
 <p>这两种编程风格的差异与权衡参见官网解释：<a href="https://matplotlib.org/stable/users/explain/figure/api_interfaces.html#api-interfaces">Matplotlib Application Interfaces (APIs)</a></p>
 <h3 id="142-the-oo-style">1.4.2 the OO-style示例<a class="headerlink" href="#142-the-oo-style" title="Permanent link">&para;</a></h3>
@@ -1420,7 +1423,7 @@ matplotlib-inline                        0.1.7
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
