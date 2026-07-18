@@ -9,6 +9,8 @@ math: "False"
 ---
 笔者学习与使用matplotlib过程中做了相关笔记，然后将其整理成了此文档。
 
+Matplotlib系统文档已经归档为开源Github项目：`https://github.com/jiangsanyin/Matplotlib-Guide`，在线浏览：`https://jiangsanyin.github.io/Matplotlib-Guide/`
+
 # 一、安装与初识matplotlib
 
 Matplotlib 是 Python 中最核心、最老牌的数据可视化（绘图）基础库。它就像是 Python 世界里的“数字画笔”，能够将 NumPy 数组或 Pandas 抽象的数据，转化为折线图、柱状图、散点图、3D 图等各种专业的静态、动态或交互式图表。它的设计理念深受 MATLAB 的影响（其核心子库 `pyplot` 的语法与 MATLAB 高度相似），由于其功能极其强大、底层控制极其精细，如今它已成为大模型特征分析、医疗数据工程以及科学计算领域中不可或缺的画图利器。
@@ -23,7 +25,7 @@ Matplotlib相关链接：
 - 官网：`https://matplotlib.org/index.html`
 - 案例：`https://matplotlib.org/gallery/index.html`
 - 官方所有示例源码：`https://matplotlib.org/stable/tutorials/index.html`
-- 项目的github仓库地址：`https://github.com/matplotlib/matplotlib`
+- matplotlib官方github仓库地址：`https://github.com/matplotlib/matplotlib`
 
 ## 1.1 安装matplotlib
 本文以 `python 3.11.9`、`matplotlib 3.11.0 为环境来描述。以下内容中涉及所述的stable版本matplotlib就是指2026年6月11日发布的matplotlib v3.11，它为当前最新稳定版。
@@ -109,7 +111,10 @@ matplotlib支持两种编码风格：显式接口风格（也叫"object-oriented
 - OO-style：显式地创建画布与子图，在它们的基础上调用各种控制数据或样式的方法。
 - pyplot-style：依赖于 pyplot 隐式地创建与管理画布与子图，使用 pyplot 函数进行盲盒式管理来画图。
 
+
+
 在隐式风格中，Matplotlib 在幕后维护着一个“当前活动状态机”。当用户直接调用 `plt.plot()` 这种函数时，用户明明从来没有亲手创建过画布（Figure）和子图（Axes），但图却画出来了。这就是因为 `pyplot` 在自动进行以下隐式管理：
+
 - **自动创建**：发现用户明确没建画布？它会自动在后台建一个 `Figure`，并在里面塞进一个默认的子图 `Axes`。
 - **自动追踪（最核心的管理）**：如果用户一口气开了好几个窗口，或者画了好几个子图，`pyplot` 会在后台死死盯着：“哪一个画布是当前用户正在操作的？哪一个子图是当前活跃的？” **
 - **自动路由**：比如当用户敲下 `plt.title("我的图")` 时，`pyplot` 管理系统会立刻把这个标题发送给 当前处于活跃状态的那张画布里的那个子图 。

@@ -31,7 +31,7 @@ Matplotlib 是 Python 中最核心、最老牌的数据可视化基础库。它�
 
 - Matplotlib 官网：[https://matplotlib.org/](https://matplotlib.org/)
 - 官方案例库：[https://matplotlib.org/gallery/](https://matplotlib.org/stable/gallery/index.html)
-- GitHub 仓库：[https://github.com/matplotlib/matplotlib](https://github.com/matplotlib/matplotlib)
+- Matplotlib官方 GitHub 仓库：[https://github.com/matplotlib/matplotlib](https://github.com/matplotlib/matplotlib)
 
 ---
 
