@@ -56,7 +56,7 @@ nav:
   - 首页: index.md
   - 第1章 安装与初识Matplotlib: 第1章-01安装与初识Matplotlib.md
   - 第2章 官方文档的介绍: 第2章-02官方文档的介绍.md
-  - 第3章 Matplotlib中图的组成: 第3章-03Matplotlib中图的组成.md
-  - 第4章 Matplotlib中对图的操作: 第4章-04Matplotlib中对图的操作.md
+  - 第3章 Matplotlib中图的组成: 第3章-03Matplotlib中图表的组成.md
+  - 第4章 Matplotlib中对图的操作: 第4章-04Matplotlib中对图表的操作.md
   - 第5章 Matplotlib绘制常用图表: 第5章-05Matplotlib绘制常用图表.md
   - 第6章 注意事项: 第6章-06注意事项.md
