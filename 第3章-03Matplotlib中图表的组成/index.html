@@ -15,6 +15,10 @@
         <link rel="canonical" href="http://127.0.0.1:8000/%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E8%A1%A8%E7%9A%84%E7%BB%84%E6%88%90/">
       
       
+        <link rel="prev" href="../%E7%AC%AC2%E7%AB%A0-02%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%9A%84%E4%BB%8B%E7%BB%8D/">
+      
+      
+        <link rel="next" href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">
       
       
         
@@ -266,9 +270,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../第3章-03Matplotlib中图的组成.md" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -287,7 +293,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../第4章-04Matplotlib中对图的操作.md" class="md-tabs__link">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-tabs__link">
         
   
   
@@ -456,10 +462,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../第3章-03Matplotlib中图的组成.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章 Matplotlib中图的组成
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -475,6 +508,204 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-matplotlibapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 matplotlib中API构架分层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-axesartist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 坐标系Axes与Artist的属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 坐标系Axes与Artist的属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-api-axes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 最常用API-Axes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-artistgettersetter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Artist的属性与getter/setter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-artist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Artist的细化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Artist的细化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1 基础图元primitives
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.1 基础图元primitives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1line-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）线条流派“Line Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2patch-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）面片流派“Patch Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3text-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）文本流派“Text Elements”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （4）图像流派“Images”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5collection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （5）集合流派“Collection”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2 容器对象containers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3.2 容器对象containers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1figure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）Figure“画布”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2axes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）Axes“子图/坐标系”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -486,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../第4章-04Matplotlib中对图的操作.md" class="md-nav__link">
+      <a href="../%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/" class="md-nav__link">
         
   
   

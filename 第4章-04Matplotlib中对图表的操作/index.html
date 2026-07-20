@@ -15,6 +15,10 @@
         <link rel="canonical" href="http://127.0.0.1:8000/%E7%AC%AC4%E7%AB%A0-04Matplotlib%E4%B8%AD%E5%AF%B9%E5%9B%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C/">
       
       
+        <link rel="prev" href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E8%A1%A8%E7%9A%84%E7%BB%84%E6%88%90/">
+      
+      
+        <link rel="next" href="../%E7%AC%AC5%E7%AB%A0-05Matplotlib%E7%BB%98%E5%88%B6%E5%B8%B8%E7%94%A8%E5%9B%BE%E8%A1%A8/">
       
       
         
@@ -268,7 +272,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../第3章-03Matplotlib中图的组成.md" class="md-tabs__link">
+      <a href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E8%A1%A8%E7%9A%84%E7%BB%84%E6%88%90/" class="md-tabs__link">
         
   
   
@@ -285,9 +289,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../第4章-04Matplotlib中对图的操作.md" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -459,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../第3章-03Matplotlib中图的组成.md" class="md-nav__link">
+      <a href="../%E7%AC%AC3%E7%AB%A0-03Matplotlib%E4%B8%AD%E5%9B%BE%E8%A1%A8%E7%9A%84%E7%BB%84%E6%88%90/" class="md-nav__link">
         
   
   
@@ -483,10 +489,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../第4章-04Matplotlib中对图的操作.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章 Matplotlib中对图的操作
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -502,6 +535,360 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-rcparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 rcParams全局配置参数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 rcParams全局配置参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1 包含中文的画图示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-rcparams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.2 rcParams介绍
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-pyplotplot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 pyplot.plot常用调用形式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 pyplot.plot常用调用形式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#421-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.1 调用签名1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#422-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.2 调用签名2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#423-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2.3 调用签名3
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 容器与框架层常用操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 容器与框架层常用操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.1 画布操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#432" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2 子图操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.2 子图操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2.1 在画布中创建多个均匀子图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2.2 向画布中逐渐添加子图
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3.2.2 向画布中逐渐添加子图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#43221-figure-add-subplot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2.2.1 figure-add-subplot(推荐)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43222-pyplot-subplot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.2.2.2 pyplot-subplot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.3 边框线操作（坐标轴设置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 数据表现层常用操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 数据表现层常用操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#441-pyplotplotfmt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.1 pyplot.plot方法的fmt参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#442-pyplotplotkwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.2 pyplot.plot方法的kwargs参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 辅助说明层常用操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 辅助说明层常用操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#451-axtitle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.1 ax.title设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#452-axlegend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.2 ax.legend图例设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#453-axgrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.3 ax.grid网格设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#454-xlabelylabel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.4 xlabel/ylabel坐标轴名称标签
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#455" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.5 主刻度与次刻度及刻度标签
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5.5 主刻度与次刻度及刻度标签">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4551-axesset_xticks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.5.1 Axes.set_xticks方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4552-axesset_xlim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5.5.2 Axes.set_xlim方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
